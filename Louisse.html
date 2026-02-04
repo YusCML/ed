@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: url('Louisse and me.jpg') no-repeat center center fixed;
+        background-size: cover;
+        text-align: center;
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    #content {
+        background: rgba(255,255,255,0.95);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 2;
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        backdrop-filter: blur(10px);
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #ff3b5c;
+        margin-bottom: 0.5em;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    p {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 15px 25px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        min-width: 120px;
+    }
+
+    #yesBtn { 
+        background: linear-gradient(135deg, #ff4b5c, #ff758c);
+        color: white; 
+        box-shadow: 0 4px 15px rgba(255, 75, 92, 0.3);
+    }
+    
+    #yesBtn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 75, 92, 0.4);
+    }
+
+    #noBtn { 
+        background: linear-gradient(135deg, #ccc, #ddd);
+        color: #333; 
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    #noBtn:hover {
+        transform: translateY(-2px);
+    }
+
+    #loveVideo {
+        width: 50%;
+        max-width: 400px;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: 0.6s ease;
+        border-radius: 20px;
+        margin-top: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        border: 5px solid white;
+    }
+
+    #funnyText {
+        font-size: 1.4rem;
+        margin-top: 20px;
+        color: #ff3b5c;
+        font-weight: bold;
+        opacity: 0;
+        padding: 15px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 15px;
+        max-width: 500px;
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    #controls {
+        margin-top: 20px;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    #fullBtn {
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        padding: 12px 24px;
+    }
+
+    #volume {
+        width: 200px;
+        height: 10px;
+        border-radius: 5px;
+        background: #ddd;
+        outline: none;
+        opacity: 0.7;
+        transition: opacity .2s;
+    }
+
+    #volume:hover {
+        opacity: 1;
+    }
+
+    .heart {
+        position: absolute;
+        color: pink;
+        font-size: 24px;
+        animation: fall 4s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    @keyframes fall {
+        from { 
+            transform: translateY(-50px) rotate(0deg); 
+            opacity: 1; 
+        }
+        to { 
+            transform: translateY(100vh) rotate(360deg); 
+            opacity: 0; 
+        }
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.2) rotate(-10deg); }
+        60% { transform: scale(1.2) rotate(5deg); }
+        100% { transform: scale(1) rotate(0); }
+    }
+
+    .result-content {
+        background: rgba(255,255,255,0.9);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        max-width: 500px;
+        width: 90%;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        
+        button {
+            padding: 12px 20px;
+            min-width: 100px;
+        }
+        
+        #content {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.3rem;
+        }
+        
+        #funnyText {
+            font-size: 1.1rem;
+        }
+        
+        .buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        button {
+            width: 100%;
+            max-width: 200px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div id="content">
+    <h1>My sweet glorious munchkin, Will you be my Valentine?</h1>
+    <p>Please tap Yes 🥺</p>
+    <div class="buttons">
+        <button id="yesBtn">Yes 💕</button>
+        <button id="noBtn">No 💔</button>
+    </div>
+</div>
+
+<div id="result" style="display: none;">
+    <div class="result-content">
+        <video id="loveVideo" muted loop playsinline>
+            <!-- Video will be loaded from YouTube or local file -->
+            <source src="love.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p id="funnyText"></p>
+
+        <div id="controls">
+            <button id="fullBtn">Fullscreen 🎬</button>
+            <label for="volume">Music Volume:</label>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    </div>
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+    <!-- Using a royalty-free music source -->
+    <source src="Bruno Mars - Count on Me (Official Lyric Video).mp3" type="audio/mpeg">
+
+</audio>
+
+<script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const content = document.getElementById("content");
+    const result = document.getElementById("result");
+    const loveVideo = document.getElementById("loveVideo");
+    const funnyText = document.getElementById("funnyText");
+    const bgMusic = document.getElementById("bgMusic");
+    const volume = document.getElementById("volume");
+    const controls = document.getElementById("controls");
+
+    const lines = [
+        "YAYYYYY YOU PICKED THE RIGHT CHOICE BEBI💘",
+        "Achievement unlocked: MAY DATE NA IKAW",
+        "You just made my heart skip a beat! 💓",
+        "YIPIEEEE I LOVE YOU LANGGA💖",
+        "HAPPY MOTMOT BABY KO!",
+        "My heart is doing the happy dance! 💃🕺",
+        "Best decision you've made today! 😉",
+        "Let's make this Valentine's magical! ✨"
+    ];
+
+    // Make the "No" button move when hovered
+    noBtn.addEventListener("mouseover", () => {
+        noBtn.style.left = Math.random() * 70 + "vw";
+        noBtn.style.top = Math.random() * 50 + "vh";
+        noBtn.style.position = "fixed";
+    });
+
+    // Make the "No" button move on touch for mobile
+    noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        noBtn.style.left = Math.random() * 70 + "vw";
+        noBtn.style.top = Math.random() * 50 + "vh";
+        noBtn.style.position = "fixed";
+    });
+
+    // Handle "Yes" button click
+    yesBtn.addEventListener("click", () => {
+        content.style.opacity = "0";
+        content.style.transform = "scale(0.9)";
+        
+        setTimeout(() => {
+            content.style.display = "none";
+            result.style.display = "block";
+            
+            // Show video with animation
+            setTimeout(() => {
+                loveVideo.style.opacity = 1;
+                loveVideo.style.transform = "scale(1)";
+                loveVideo.style.animation = "pop 0.7s ease forwards";
+                
+                // Show funny text
+                funnyText.textContent = lines[Math.floor(Math.random() * lines.length)];
+                funnyText.style.opacity = 1;
+                
+                // Show controls
+                controls.style.opacity = 1;
+                
+                // Start hearts animation
+                startHearts();
+                
+                // Try to play video
+                loveVideo.play().catch(e => {
+                    console.log("Video play failed:", e);
+                    // Show play button overlay for mobile
+                    const playOverlay = document.createElement('div');
+                    playOverlay.innerHTML = '▶️ Tap to Play Video';
+                    playOverlay.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(0,0,0,0.7);
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        z-index: 10;
+                    `;
+                    loveVideo.parentNode.appendChild(playOverlay);
+                    playOverlay.addEventListener('click', () => {
+                        loveVideo.play();
+                        playOverlay.remove();
+                    });
+                });
+                
+                // Try to play background music
+                bgMusic.volume = 0.5;
+                bgMusic.play().catch(e => {
+                    console.log("Audio play failed:", e);
+                    // Add a play button for music
+                    const musicBtn = document.createElement('button');
+                    musicBtn.innerHTML = '🔊 Play Music';
+                    musicBtn.style.cssText = `
+                        margin-top: 10px;
+                        padding: 10px 20px;
+                        background: #4CAF50;
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                    `;
+                    musicBtn.addEventListener('click', () => {
+                        bgMusic.play();
+                        musicBtn.remove();
+                    });
+                    controls.appendChild(musicBtn);
+                });
+            }, 300);
+        }, 300);
+    });
+
+    // Volume control
+    volume.addEventListener("input", () => {
+        bgMusic.volume = volume.value;
+    });
+
+    // Fullscreen button
+    document.getElementById("fullBtn").addEventListener("click", () => {
+        if (loveVideo.requestFullscreen) {
+            loveVideo.requestFullscreen();
+        } else if (loveVideo.webkitRequestFullscreen) {
+            loveVideo.webkitRequestFullscreen();
+        } else if (loveVideo.msRequestFullscreen) {
+            loveVideo.msRequestFullscreen();
+        }
+    });
+
+    // Hearts animation
+    function startHearts() {
+        const heartIcons = ["💖", "💕", "💗", "💓", "💞", "💘", "❤️", "💝"];
+        
+        setInterval(() => {
+            const h = document.createElement("div");
+            h.className = "heart";
+            h.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.fontSize = (Math.random() * 30 + 20) + "px";
+            h.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(h);
+            
+            setTimeout(() => {
+                h.remove();
+            }, 5000);
+        }, 200);
+    }
+
+    // Handle page visibility for audio
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            bgMusic.pause();
+        } else if (bgMusic.paused && result.style.display === "block") {
+            bgMusic.play().catch(() => {});
+        }
+    });
+
+    // Add click sound for buttons
+    const clickSound = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
+    
+    yesBtn.addEventListener('click', () => {
+        clickSound.play().catch(() => {});
+    });
+    
+    noBtn.addEventListener('click', () => {
+        clickSound.play().catch(() => {});
+    });
+</script>
+
+</body>
+</html>
